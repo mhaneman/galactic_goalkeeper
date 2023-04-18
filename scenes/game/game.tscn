@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://joq2s0uj7pl1"]
+
+[ext_resource type="PackedScene" uid="uid://b621q664f3j88" path="res://scenes/game/game_viewport.tscn" id="1_8qb56"]
+[ext_resource type="Sky" uid="uid://bty8tl0fi36h1" path="res://global_assets/resources/game_sky.tres" id="1_i4jyi"]
+
+[sub_resource type="GDScript" id="GDScript_gjde8"]
+script/source = "extends Node
+"
+
+[sub_resource type="Environment" id="Environment_6bdo8"]
+background_mode = 2
+background_color = Color(0.823529, 0.823529, 0.823529, 1)
+sky = ExtResource("1_i4jyi")
+
+[node name="main" type="Node"]
+script = SubResource("GDScript_gjde8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6bdo8")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="WorldEnvironment"]
+
+[node name="game" parent="." instance=ExtResource("1_8qb56")]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://vg760qt84ub4"]
+
+[ext_resource type="Texture2D" uid="uid://ckrgv4cdvw8pk" path="res://scenes/ui/button_textures/button_left_normal.png" id="1_kd2l0"]
+[ext_resource type="Texture2D" uid="uid://86udxkf1fg8k" path="res://scenes/ui/button_textures/button_left_pressed.png" id="2_nn04d"]
+[ext_resource type="Texture2D" uid="uid://7i8n5q80k2gj" path="res://scenes/ui/button_textures/button_right_normal.png" id="3_p0hj0"]
+[ext_resource type="Texture2D" uid="uid://8l2m2v1a8y67" path="res://scenes/ui/button_textures/button_right_pressed.png" id="4_nl6pj"]
+[ext_resource type="Texture2D" uid="uid://dqecaueku1d0r" path="res://scenes/ui/button_textures/button_normal.png" id="5_dkelj"]
+[ext_resource type="Texture2D" uid="uid://diakpfkrld8mr" path="res://scenes/ui/button_textures/button_pressed.png" id="6_648o5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6pd4"]
+size = Vector2(60, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7sbk"]
+size = Vector2(60, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exxub"]
+size = Vector2(65, 60)
+
+[node name="ui" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -443.0
+offset_right = 1122.0
+offset_bottom = 814.0
+color = Color(0.14902, 0.0941176, 0.219608, 1)
+
+[node name="left" type="TouchScreenButton" parent="."]
+scale = Vector2(3.547, 4)
+texture_normal = ExtResource("1_kd2l0")
+texture_pressed = ExtResource("2_nn04d")
+shape = SubResource("RectangleShape2D_a6pd4")
+passby_press = true
+action = "left"
+
+[node name="right" type="TouchScreenButton" parent="."]
+position = Vector2(215, 0)
+scale = Vector2(3.466, 4)
+texture_normal = ExtResource("3_p0hj0")
+texture_pressed = ExtResource("4_nl6pj")
+shape = SubResource("RectangleShape2D_t7sbk")
+passby_press = true
+action = "right"
+
+[node name="jump" type="TouchScreenButton" parent="."]
+position = Vector2(448, 43)
+scale = Vector2(3.79688, 3.125)
+texture_normal = ExtResource("5_dkelj")
+texture_pressed = ExtResource("6_648o5")
+shape = SubResource("RectangleShape2D_exxub")
+action = "jump"

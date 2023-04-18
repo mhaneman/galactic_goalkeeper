@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d111s12sph0nk"]
+
+[ext_resource type="Script" path="res://scenes/gameloop/gameloop.gd" id="1_biq7s"]
+[ext_resource type="PackedScene" uid="uid://b7p4u3hxfdwwe" path="res://scenes/entites/player/character.tscn" id="1_tcgxx"]
+
+[node name="gameloop" type="Node3D"]
+script = ExtResource("1_biq7s")
+
+[node name="character" parent="." instance=ExtResource("1_tcgxx")]
+
+[node name="kickers" type="Node3D" parent="."]
+
+[node name="progress_timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="progress_timer" to="." method="_on_new_kicker_timeout"]

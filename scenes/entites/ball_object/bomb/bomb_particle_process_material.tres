@@ -1,0 +1,20 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://bfn6voditr72o"]
+
+[sub_resource type="Gradient" id="Gradient_wrgn6"]
+offsets = PackedFloat32Array(0, 0.99631)
+colors = PackedColorArray(0.812799, 0.283122, 0.166997, 1, 1, 0.733507, 0.404174, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bvtky"]
+gradient = SubResource("Gradient_wrgn6")
+
+[resource]
+lifetime_randomness = 0.03
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+angular_velocity_min = 0.3
+angular_velocity_max = 1.0
+angle_min = 720.0
+angle_max = 720.0
+color_ramp = SubResource("GradientTexture1D_bvtky")

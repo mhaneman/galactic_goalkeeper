@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://58vxj781wx1o"]
+
+[ext_resource type="Script" path="res://scenes/entites/ball_object/bomb/bomb.gd" id="1_qph60"]
+[ext_resource type="PackedScene" uid="uid://bys2e7lirjoxt" path="res://scenes/entites/ball_object/bomb/bomb.blend" id="2_h2c3c"]
+[ext_resource type="Texture2D" uid="uid://bbkbegg8mcfk6" path="res://scenes/entites/ball_object/bomb/fire-particle.png" id="3_8kqeg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g8ukj"]
+friction = 0.35
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aok81"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogji7"]
+transparency = 1
+albedo_texture = ExtResource("3_8kqeg")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_upe0n"]
+material = SubResource("StandardMaterial3D_ogji7")
+size = Vector2(0.25, 0.25)
+
+[node name="bomb" type="RigidBody3D"]
+collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_g8ukj")
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_qph60")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
+shape = SubResource("SphereShape3D_aok81")
+
+[node name="bomb" parent="CollisionShape3D" instance=ExtResource("2_h2c3c")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="despawn_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7931, 0)
+lifetime = 0.2
+mesh = SubResource("QuadMesh_upe0n")
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]

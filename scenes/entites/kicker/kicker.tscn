@@ -1,0 +1,134 @@
+[gd_scene load_steps=21 format=3 uid="uid://dguauqi1af8nl"]
+
+[ext_resource type="Script" path="res://scenes/entites/kicker/kicker.gd" id="1_k0xkk"]
+[ext_resource type="Texture2D" uid="uid://dt3m1t22nmjhw" path="res://scenes/entites/kicker/alien-beamed.png" id="2_moeh2"]
+[ext_resource type="Texture2D" uid="uid://bfamxctqulesy" path="res://scenes/entites/kicker/alien_resting.png" id="4_p4tvr"]
+[ext_resource type="PackedScene" uid="uid://pr4ln4wfqoxn" path="res://global_assets/beaming.tscn" id="5_rmjvu"]
+[ext_resource type="AudioStream" uid="uid://dutqp1se6l2v2" path="res://scenes/entites/kicker/kick.wav" id="6_bujfk"]
+[ext_resource type="Texture2D" uid="uid://br1dd3si3cei5" path="res://scenes/entites/kicker/alien-kick.png" id="6_ocmfw"]
+[ext_resource type="AudioStream" uid="uid://b52v06k1hn1yj" path="res://global_assets/audio/respawn.wav" id="7_b7f70"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glov4"]
+atlas = ExtResource("4_p4tvr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvblq"]
+atlas = ExtResource("4_p4tvr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u28ru"]
+atlas = ExtResource("4_p4tvr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46xu6"]
+atlas = ExtResource("4_p4tvr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mprek"]
+atlas = ExtResource("6_ocmfw")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1vcn"]
+atlas = ExtResource("6_ocmfw")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkcpe"]
+atlas = ExtResource("2_moeh2")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv58q"]
+atlas = ExtResource("2_moeh2")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyc75"]
+atlas = ExtResource("2_moeh2")
+region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtld2"]
+atlas = ExtResource("2_moeh2")
+region = Rect2(0, 192, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4478y"]
+atlas = ExtResource("2_moeh2")
+region = Rect2(0, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68017"]
+atlas = ExtResource("2_moeh2")
+region = Rect2(0, 320, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4wfh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glov4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvblq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u28ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46xu6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mprek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1vcn")
+}],
+"loop": false,
+"name": &"kick",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkcpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv58q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyc75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtld2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4478y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68017")
+}],
+"loop": false,
+"name": &"teleport",
+"speed": 15.0
+}]
+
+[node name="kicker" type="Node3D"]
+script = ExtResource("1_k0xkk")
+
+[node name="character" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -2.30713, 6.58595, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_c4wfh")
+animation = &"idle"
+
+[node name="beaming" parent="." instance=ExtResource("5_rmjvu")]
+
+[node name="kick_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bujfk")
+volume_db = -10.0
+
+[node name="spawn_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_b7f70")
+volume_db = -20.0
+pitch_scale = 2.0
+
+[connection signal="animation_finished" from="character" to="." method="_on_character_animation_finished"]

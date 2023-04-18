@@ -1,0 +1,349 @@
+[gd_scene load_steps=37 format=3 uid="uid://b0ojhb6y6usdx"]
+
+[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_dpd0f"]
+[ext_resource type="Texture2D" uid="uid://15jfux5nmr8l" path="res://scenes/menu/textures/alien-craft-empty.png" id="2_mdli4"]
+[ext_resource type="Texture2D" uid="uid://wusmivngn78b" path="res://scenes/menu/textures/alien-craft.png" id="3_henlv"]
+[ext_resource type="Texture2D" uid="uid://br52vo4awkxyt" path="res://scenes/menu/textures/craft-beam.png" id="4_0oslp"]
+[ext_resource type="Texture2D" uid="uid://bot4uhdhrhv81" path="res://scenes/menu/textures/craft-beam-up.png" id="5_7dpgr"]
+[ext_resource type="PackedScene" uid="uid://b7p4u3hxfdwwe" path="res://scenes/entites/player/character.tscn" id="5_paclc"]
+[ext_resource type="AudioStream" uid="uid://bfxdhm8ta6h3s" path="res://global_assets/audio/beam.wav" id="6_y3stp"]
+[ext_resource type="Sky" uid="uid://bty8tl0fi36h1" path="res://global_assets/resources/game_sky.tres" id="8_i07s2"]
+[ext_resource type="StyleBox" uid="uid://bsik86ln14elq" path="res://scenes/menu/resources/container_style_box_flat.tres" id="9_shulb"]
+[ext_resource type="FontFile" uid="uid://c4hplhf8m226f" path="res://global_assets/fonts/04B_30__.TTF" id="10_cwxim"]
+[ext_resource type="LabelSettings" uid="uid://b114q87eraur2" path="res://global_assets/resources/label_theme_h2.tres" id="10_e760u"]
+[ext_resource type="PackedScene" uid="uid://cx553bgpwdl48" path="res://scenes/envi/envi.tscn" id="11_6ytxd"]
+[ext_resource type="LabelSettings" uid="uid://df83p3pntbvdl" path="res://global_assets/resources/label_theme_h1.tres" id="11_arseg"]
+[ext_resource type="StyleBox" uid="uid://dagoyb8p7k4ie" path="res://scenes/menu/resources/start_box.tres" id="13_tcrnd"]
+[ext_resource type="StyleBox" uid="uid://qghj7jq5s1fp" path="res://scenes/menu/resources/start_box_pressed.tres" id="14_i84a7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntpa8"]
+atlas = ExtResource("2_mdli4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iycxr"]
+atlas = ExtResource("3_henlv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekwsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntpa8")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iycxr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mk3x"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 0, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3qoj"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 128, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xtkj"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 256, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlf2n"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 384, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2pcr"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 512, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbkwk"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 640, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xml32"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 768, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2jah"]
+atlas = ExtResource("4_0oslp")
+region = Rect2(0, 896, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8e8m"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 896, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heyqj"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 768, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6e8x"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 640, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76wdw"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 512, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghelf"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 384, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2eva"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 256, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i5cd"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 128, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtdol"]
+atlas = ExtResource("5_7dpgr")
+region = Rect2(0, 0, 32, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g2fdx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mk3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3qoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xtkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlf2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2pcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbkwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xml32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2jah")
+}],
+"loop": false,
+"name": &"beamed-down",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8e8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heyqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6e8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76wdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghelf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2eva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i5cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtdol")
+}],
+"loop": false,
+"name": &"beamed-up",
+"speed": 15.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Environment" id="Environment_t1g6a"]
+background_mode = 2
+sky = ExtResource("8_i07s2")
+
+[node name="menu" type="Node"]
+script = ExtResource("1_dpd0f")
+
+[node name="background" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="craft" type="AnimatedSprite3D" parent="background"]
+transform = Transform3D(12, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ekwsu")
+animation = &"idle"
+
+[node name="beam" type="AnimatedSprite3D" parent="background/craft"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.379892, 0)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_g2fdx")
+animation = &"beamed-up"
+
+[node name="beam_audio" type="AudioStreamPlayer" parent="background/craft"]
+stream = ExtResource("6_y3stp")
+volume_db = -5.0
+
+[node name="envi" parent="background" instance=ExtResource("11_6ytxd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -30, -200)
+
+[node name="character" parent="background/envi" instance=ExtResource("5_paclc")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="background"]
+environment = SubResource("Environment_t1g6a")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="background/WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="background/WorldEnvironment"]
+
+[node name="info" type="CanvasLayer" parent="."]
+
+[node name="stats" type="Control" parent="info"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="last_score" type="Panel" parent="info/stats"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -266.0
+offset_top = 111.0
+offset_right = 267.0
+offset_bottom = 203.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("9_shulb")
+
+[node name="last_score_label" type="Label" parent="info/stats/last_score"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.5
+offset_top = -18.0
+offset_right = 17.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "you saved"
+label_settings = ExtResource("10_e760u")
+
+[node name="value" type="Label" parent="info/stats/last_score"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 83.5
+offset_top = -18.0
+offset_right = 183.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "null"
+label_settings = ExtResource("10_e760u")
+
+[node name="high_score" type="Panel" parent="info/stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = 260.0
+offset_right = 216.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("9_shulb")
+
+[node name="high_score_label" type="Label" parent="info/stats/high_score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.5
+offset_top = 30.0
+offset_right = 167.5
+offset_bottom = 76.0
+grow_horizontal = 2
+text = "high score"
+label_settings = ExtResource("11_arseg")
+
+[node name="value" type="Label" parent="info/stats/high_score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = 16.5
+offset_right = 68.0
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "null"
+label_settings = ExtResource("11_arseg")
+horizontal_alignment = 1
+
+[node name="buttons" type="Control" parent="info"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="start_button" type="Button" parent="info/buttons"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -253.0
+offset_top = -475.0
+offset_right = 242.0
+offset_bottom = -341.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("10_cwxim")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = ExtResource("13_tcrnd")
+theme_override_styles/hover = ExtResource("13_tcrnd")
+theme_override_styles/pressed = ExtResource("14_i84a7")
+text = "Start"
+
+[connection signal="pressed" from="info/buttons/start_button" to="." method="_on_start_button_pressed"]

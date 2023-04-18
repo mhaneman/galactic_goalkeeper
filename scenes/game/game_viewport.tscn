@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://b621q664f3j88"]
+
+[ext_resource type="Script" path="res://scenes/game/game_viewport.gd" id="1_q0017"]
+[ext_resource type="AudioStream" uid="uid://bydp232d5qchp" path="res://global_assets/audio/goal.wav" id="2_4o6kn"]
+[ext_resource type="Shader" path="res://scenes/game/shaders/invert_colors.gdshader" id="2_6n5cy"]
+[ext_resource type="Script" path="res://scenes/game/red_flicker.gd" id="2_14yvs"]
+[ext_resource type="AudioStream" uid="uid://br2uta7chbjti" path="res://global_assets/audio/blocked.wav" id="2_pjufh"]
+[ext_resource type="FontFile" uid="uid://besvyvc2uij5e" path="res://global_assets/fonts/BitPotion.ttf" id="2_wj0k7"]
+[ext_resource type="PackedScene" uid="uid://cx553bgpwdl48" path="res://scenes/envi/envi.tscn" id="3_sv0xf"]
+[ext_resource type="PackedScene" uid="uid://58vxj781wx1o" path="res://scenes/entites/ball_object/bomb/bomb.tscn" id="4_52mqp"]
+[ext_resource type="Script" path="res://scenes/game/cache.gd" id="4_rv01y"]
+[ext_resource type="PackedScene" uid="uid://b2woulrxi0ohn" path="res://scenes/entites/ball_object/soccer_ball/soccer_ball.glb" id="5_3pj28"]
+[ext_resource type="PackedScene" uid="uid://d111s12sph0nk" path="res://scenes/gameloop/gameloop.tscn" id="5_25200"]
+[ext_resource type="SpriteFrames" path="res://scenes/game/resources/strike_sprites.tres" id="5_nls27"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_adubu"]
+shader = ExtResource("2_6n5cy")
+shader_parameter/hide = false
+shader_parameter/color = Color(0.945098, 0, 0.121569, 1)
+shader_parameter/strength = 1.0
+
+[node name="game" type="Node3D"]
+script = ExtResource("1_q0017")
+
+[node name="goal_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4o6kn")
+volume_db = -6.0
+
+[node name="saved_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pjufh")
+volume_db = 3.0
+
+[node name="effects" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="invert_colors" type="ColorRect" parent="effects"]
+material = SubResource("ShaderMaterial_adubu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_14yvs")
+
+[node name="counter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+
+[node name="saved" type="Label3D" parent="counter"]
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+font = ExtResource("2_wj0k7")
+font_size = 64
+outline_size = 8
+
+[node name="strikes" type="Node3D" parent="counter"]
+
+[node name="strike_1" type="AnimatedSprite3D" parent="counter/strikes"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2, 2, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = ExtResource("5_nls27")
+animation = &"filled"
+
+[node name="strike_2" type="AnimatedSprite3D" parent="counter/strikes"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = ExtResource("5_nls27")
+animation = &"filled"
+
+[node name="strike_3" type="AnimatedSprite3D" parent="counter/strikes"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2, 2, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = ExtResource("5_nls27")
+animation = &"filled"
+
+[node name="envi" parent="." instance=ExtResource("3_sv0xf")]
+
+[node name="gameloop" parent="." instance=ExtResource("5_25200")]
+
+[node name="cache" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -192)
+script = ExtResource("4_rv01y")
+
+[node name="bomb" parent="cache" instance=ExtResource("4_52mqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44909, 0.209019, -0.306503)
+
+[node name="soccer_ball" parent="cache" instance=ExtResource("5_3pj28")]
+transform = Transform3D(0.99996, 0, 0.00891851, 0, 1, 0, -0.00891851, 0, 0.99996, 0, 1.19197, 0)

@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" uid="uid://ckylruydd4bj" path="res://scenes/game/textures/heart-empty.png" id="1_w24ol"]
+[ext_resource type="Texture2D" uid="uid://b2oycrn3xgjbi" path="res://scenes/game/textures/heart-filled.png" id="2_h54qd"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w24ol")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h54qd")
+}],
+"loop": true,
+"name": &"filled",
+"speed": 5.0
+}]

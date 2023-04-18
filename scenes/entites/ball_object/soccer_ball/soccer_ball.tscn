@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b48kdejfsxeub"]
+
+[ext_resource type="Script" path="res://scenes/entites/ball_object/soccer_ball/soccer_ball.gd" id="1_6munc"]
+[ext_resource type="PackedScene" uid="uid://b2woulrxi0ohn" path="res://scenes/entites/ball_object/soccer_ball/soccer_ball.glb" id="2_gkvsg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_83px7"]
+friction = 0.47
+bounce = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s1kb7"]
+radius = 1.0
+
+[node name="soccer_ball" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_83px7")
+script = ExtResource("1_6munc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
+shape = SubResource("SphereShape3D_s1kb7")
+
+[node name="soccer_ball" parent="CollisionShape3D" instance=ExtResource("2_gkvsg")]
+
+[node name="despawn_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]

@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://df83p3pntbvdl"]
+
+[ext_resource type="FontFile" uid="uid://c4hplhf8m226f" path="res://global_assets/fonts/04B_30__.TTF" id="1_lfxsr"]
+
+[resource]
+font = ExtResource("1_lfxsr")
+font_size = 42

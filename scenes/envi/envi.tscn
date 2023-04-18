@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx553bgpwdl48"]
+
+[ext_resource type="PackedScene" uid="uid://c1khmgrqrtxd6" path="res://scenes/envi/net/net.tscn" id="1_aerbg"]
+[ext_resource type="PackedScene" uid="uid://dtewmgbe7fm5x" path="res://scenes/envi/resources/envi_ground.blend" id="1_gai2d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1a36s"]
+size = Vector3(80, 1, 200)
+
+[node name="envi" type="Node3D"]
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -93.8)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_1a36s")
+
+[node name="envi_ground" parent="ground/CollisionShape3D" instance=ExtResource("1_gai2d")]
+
+[node name="net" parent="." instance=ExtResource("1_aerbg")]
